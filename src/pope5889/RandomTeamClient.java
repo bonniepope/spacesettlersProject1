@@ -32,21 +32,13 @@ import spacesettlers.simulator.Toroidal2DPhysics;
 import spacesettlers.utilities.Position;
 
 /**
- * Collects nearby asteroids and brings them to the base, picks up beacons as needed for energy.
+ * Agent that prioritizes asteroids 
  * 
- * If there is more than one ship, this version happily collects asteroids with as many ships as it
- * has.  it never shoots (it is a pacifist)
- * 
- * @author amy
+ * @author Bonnie and Kristen
  */
 public class RandomTeamClient extends TeamClient {
 	HashMap <UUID, Ship> asteroidToShipMap;
 	HashMap <UUID, Boolean> aimingForBase;
-	
-	/**
-	 * Example knowledge used to show how to load in/save out to files for learning
-	 */
-	ExampleKnowledge myKnowledge;
 
 	/**
 	 * Assigns ships to asteroids and beacons, as described above
@@ -61,7 +53,7 @@ public class RandomTeamClient extends TeamClient {
 				Ship ship = (Ship) actionable;
 
 				AbstractAction action;
-				action = getAsteroidCollectorAction(space, ship);
+				action = getAsteroidCollectorAction(space, ship); 
 				actions.put(ship.getId(), action);
 				
 			} else {
@@ -82,6 +74,9 @@ public class RandomTeamClient extends TeamClient {
 			Ship ship) {
 		AbstractAction current = ship.getCurrentAction();
 		Position currentPosition = ship.getPosition();
+
+		// TODO: make it so it prioritizes asteroids, then beacons 
+		// TODO: go back to base if near base, drop off resources. If not and not full, wait until x num of resources 
 		
 		// aim for a beacon if there isn't enough energy
 		if (ship.getEnergy() < 2000 ) {
@@ -115,7 +110,7 @@ public class RandomTeamClient extends TeamClient {
 		// otherwise aim for the asteroid
 		if (current == null || current.isMovementFinished(space)) {
 			aimingForBase.put(ship.getId(), false);
-			Asteroid asteroid = pickHighestValueFreeAsteroid(space, ship);
+			Asteroid asteroid = pickBestAsteroid(space, ship);
 			//double distAsteroid = space.findShortestDistance(ship.getPosition(), asteroid.getPosition());
 
 			AbstractAction newAction = null;
@@ -153,6 +148,49 @@ public class RandomTeamClient extends TeamClient {
 			}
 		}
 		return nearestBase;
+	}
+	
+	/**
+	 * Returns the best asteroid determined by closeness
+	 * 
+	 * @return
+	 */
+	private Asteroid pickBestAsteroid(Toroidal2DPhysics space, Ship ship) {
+		Set<Asteroid> asteroids = space.getAsteroids();
+		int bestMoney = Integer.MIN_VALUE;
+		Asteroid bestAsteroid = null;
+		ArrayList<Asteroid> closestAsteroids = new ArrayList<Asteroid>();
+		int count = 0;
+
+		for (Asteroid asteroid : asteroids) {
+			if (!asteroidToShipMap.containsKey(asteroid)) {
+				double dist = space.findShortestDistance(ship.getPosition(), asteroid.getPosition());
+				if (closestAsteroids.size() == 0){
+					closestAsteroids.add(asteroid);
+					
+				}
+				else {
+					for (int i = 0; i < closestAsteroids.size(); i++) {
+						if (space.findShortestDistance(ship.getPosition(),
+								closestAsteroids.get(i).getPosition()) > dist) { // through array and place in correct spot
+							closestAsteroids.add(i, asteroid);
+						}
+					} 
+				}
+			}
+		}
+		for (Asteroid asteroid : closestAsteroids) {
+			if (asteroid.isMineable() && asteroid.getResources().getTotal() > bestMoney) {
+				bestMoney = asteroid.getResources().getTotal();
+				bestAsteroid = asteroid;
+			}
+			count++;
+			if (count == 5){
+				break;
+			}
+		}
+		
+		return bestAsteroid;
 	}
 
 	/**
@@ -221,18 +259,13 @@ public class RandomTeamClient extends TeamClient {
 
 
 	}
+	
 
 	/**
 	 * Demonstrates one way to read in knowledge from a file
 	 */
 	@Override
 	public void initialize(Toroidal2DPhysics space) {
-		asteroidToShipMap = new HashMap<UUID, Ship>();
-		aimingForBase = new HashMap<UUID, Boolean>();
-		
-		XStream xstream = new XStream();
-		xstream.alias("ExampleKnowledge", ExampleKnowledge.class);
-
 		
 	}
 
@@ -243,10 +276,7 @@ public class RandomTeamClient extends TeamClient {
 	 */
 	@Override
 	public void shutDown(Toroidal2DPhysics space) {
-		XStream xstream = new XStream();
-		xstream.alias("ExampleKnowledge", ExampleKnowledge.class);
-
-
+		
 	}
 
 	@Override
@@ -264,6 +294,8 @@ public class RandomTeamClient extends TeamClient {
 			Set<AbstractActionableObject> actionableObjects, 
 			ResourcePile resourcesAvailable, 
 			PurchaseCosts purchaseCosts) {
+		
+		//TODO: prioritize either ships or bases. test to see
 
 		HashMap<UUID, PurchaseTypes> purchases = new HashMap<UUID, PurchaseTypes>();
 		double BASE_BUYING_DISTANCE = 200;
@@ -325,6 +357,7 @@ public class RandomTeamClient extends TeamClient {
 			Set<AbstractActionableObject> actionableObjects) {
 		HashMap<UUID, SpaceSettlersPowerupEnum> powerUps = new HashMap<UUID, SpaceSettlersPowerupEnum>();
 
+		//TODO: what power ups to use if any?
 		
 		return powerUps;
 	}

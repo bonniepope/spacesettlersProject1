@@ -80,9 +80,6 @@ public class PacifistHeuristicAsteroidCollectorTeamClient extends TeamClient {
 			Ship ship) {
 		AbstractAction current = ship.getCurrentAction();
 		Position currentPosition = ship.getPosition();
-		
-		// TODO: make it so it prioritizes asteroids, then beacons 
-		// TODO: go back to base if near base, drop off resources. If not and not full, wait until x num of resources 
 
 		// aim for a beacon if there isn't enough energy
 		if (ship.getEnergy() < 2000) {
@@ -167,7 +164,6 @@ public class PacifistHeuristicAsteroidCollectorTeamClient extends TeamClient {
 		return nearestBase;
 	}
 	
-	// TODO: method that picks best asteroid by highest value and distance 
 
 	/**
 	 * Returns the asteroid of highest value that isn't already being chased by this team
@@ -235,8 +231,6 @@ public class PacifistHeuristicAsteroidCollectorTeamClient extends TeamClient {
 
 
 	}
-	
-	// TODO: take out contents of below 2 methods or not
 
 	/**
 	 * Demonstrates one way to read in knowledge from a file
@@ -296,8 +290,6 @@ public class PacifistHeuristicAsteroidCollectorTeamClient extends TeamClient {
 			Set<AbstractActionableObject> actionableObjects, 
 			ResourcePile resourcesAvailable, 
 			PurchaseCosts purchaseCosts) {
-		
-		//TODO: prioritize either ships or bases. test to see
 
 		HashMap<UUID, PurchaseTypes> purchases = new HashMap<UUID, PurchaseTypes>();
 		double BASE_BUYING_DISTANCE = 200;
@@ -358,8 +350,6 @@ public class PacifistHeuristicAsteroidCollectorTeamClient extends TeamClient {
 	public Map<UUID, SpaceSettlersPowerupEnum> getPowerups(Toroidal2DPhysics space,
 			Set<AbstractActionableObject> actionableObjects) {
 		HashMap<UUID, SpaceSettlersPowerupEnum> powerUps = new HashMap<UUID, SpaceSettlersPowerupEnum>();
-
-		//TODO: what power ups to use if any?
 		
 		return powerUps;
 	}
