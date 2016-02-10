@@ -3,30 +3,6 @@ svn:wc:ra_dav:version-url
 V 56
 /svn/spacesettlers/!svn/ver/22/src/spacesettlers/clients
 END
-aggressive_knowledge.xml
-K 25
-svn:wc:ra_dav:version-url
-V 81
-/svn/spacesettlers/!svn/ver/17/src/spacesettlers/clients/aggressive_knowledge.xml
-END
-HumanTeamClient.java
-K 25
-svn:wc:ra_dav:version-url
-V 77
-/svn/spacesettlers/!svn/ver/12/src/spacesettlers/clients/HumanTeamClient.java
-END
-package.html
-K 25
-svn:wc:ra_dav:version-url
-V 68
-/svn/spacesettlers/!svn/ver/7/src/spacesettlers/clients/package.html
-END
-DoNothingTeamClient.java
-K 25
-svn:wc:ra_dav:version-url
-V 80
-/svn/spacesettlers/!svn/ver/9/src/spacesettlers/clients/DoNothingTeamClient.java
-END
 ImmutableTeamInfo.java
 K 25
 svn:wc:ra_dav:version-url
@@ -86,4 +62,28 @@ K 25
 svn:wc:ra_dav:version-url
 V 77
 /svn/spacesettlers/!svn/ver/1/src/spacesettlers/clients/ExampleKnowledge.java
+END
+aggressive_knowledge.xml
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/spacesettlers/!svn/ver/17/src/spacesettlers/clients/aggressive_knowledge.xml
+END
+HumanTeamClient.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/spacesettlers/!svn/ver/12/src/spacesettlers/clients/HumanTeamClient.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/spacesettlers/!svn/ver/7/src/spacesettlers/clients/package.html
+END
+DoNothingTeamClient.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/spacesettlers/!svn/ver/9/src/spacesettlers/clients/DoNothingTeamClient.java
 END

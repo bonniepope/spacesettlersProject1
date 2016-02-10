@@ -26,52 +26,6 @@ has-props
 
 f8acf2e0-065e-4afb-bbe4-852581b2a953
 
-.project
-file
-
-
-
-
-2016-02-03T00:18:12.556020Z
-8d11587c994168efa3bec1fb732b1b3f
-2015-12-27T02:15:23.379094Z
-5
-amcgovern
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-372
-
-config
-dir
-
-lib
-dir
-
-src
-dir
-
-docs
-dir
-
 .settings
 dir
 
@@ -148,4 +102,50 @@ has-props
 
 
 519
+
+.project
+file
+
+
+
+
+2016-02-03T00:18:12.556020Z
+8d11587c994168efa3bec1fb732b1b3f
+2015-12-27T02:15:23.379094Z
+5
+amcgovern
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+372
+
+config
+dir
+
+lib
+dir
+
+src
+dir
+
+docs
+dir
 
