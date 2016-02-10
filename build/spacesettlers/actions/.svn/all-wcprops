@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/spacesettlers/!svn/ver/7/src/spacesettlers/actions
+END
+MoveToObjectAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/spacesettlers/!svn/ver/5/src/spacesettlers/actions/MoveToObjectAction.java
+END
+SpaceSettlersActionException.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/spacesettlers/!svn/ver/1/src/spacesettlers/actions/SpaceSettlersActionException.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/spacesettlers/!svn/ver/7/src/spacesettlers/actions/package.html
+END
+PurchaseTypes.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/spacesettlers/!svn/ver/5/src/spacesettlers/actions/PurchaseTypes.java
+END
+AbstractAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/spacesettlers/!svn/ver/5/src/spacesettlers/actions/AbstractAction.java
+END
+MoveAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/spacesettlers/!svn/ver/5/src/spacesettlers/actions/MoveAction.java
+END
+PurchaseCosts.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/spacesettlers/!svn/ver/5/src/spacesettlers/actions/PurchaseCosts.java
+END
+DoNothingAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/spacesettlers/!svn/ver/5/src/spacesettlers/actions/DoNothingAction.java
+END
+RawAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/spacesettlers/!svn/ver/5/src/spacesettlers/actions/RawAction.java
+END

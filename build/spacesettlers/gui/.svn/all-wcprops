@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/spacesettlers/!svn/ver/20/src/spacesettlers/gui
+END
+SpaceSettlersGUI.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/spacesettlers/!svn/ver/20/src/spacesettlers/gui/SpaceSettlersGUI.java
+END
+JSpaceSettlersInfoPanel.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/spacesettlers/!svn/ver/20/src/spacesettlers/gui/JSpaceSettlersInfoPanel.java
+END
+ResourcesPanel.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/spacesettlers/!svn/ver/9/src/spacesettlers/gui/ResourcesPanel.java
+END
+GlobalInfoPanel.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/spacesettlers/!svn/ver/20/src/spacesettlers/gui/GlobalInfoPanel.java
+END
+JSpaceSettlersComponent.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/spacesettlers/!svn/ver/19/src/spacesettlers/gui/JSpaceSettlersComponent.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/spacesettlers/!svn/ver/7/src/spacesettlers/gui/package.html
+END
+MyEmptyBorder.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/spacesettlers/!svn/ver/1/src/spacesettlers/gui/MyEmptyBorder.java
+END
+ObjectInfoPanel.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/spacesettlers/!svn/ver/9/src/spacesettlers/gui/ObjectInfoPanel.java
+END
+TeamInfoPanel.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/spacesettlers/!svn/ver/9/src/spacesettlers/gui/TeamInfoPanel.java
+END

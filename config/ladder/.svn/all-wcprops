@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/spacesettlers/!svn/ver/16/config/ladder
+END
+donothing-clientinit.xml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/spacesettlers/!svn/ver/13/config/ladder/donothing-clientinit.xml
+END
+SelfLadderConfig.xml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/spacesettlers/!svn/ver/13/config/ladder/SelfLadderConfig.xml
+END
+aggressive-heuristic-clientinit.xml
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/spacesettlers/!svn/ver/14/config/ladder/aggressive-heuristic-clientinit.xml
+END
+random-clientinit.xml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/spacesettlers/!svn/ver/13/config/ladder/random-clientinit.xml
+END
+self-ladder.html
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/spacesettlers/!svn/ver/16/config/ladder/self-ladder.html
+END
+SpaceSettlersConfig.xml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/spacesettlers/!svn/ver/16/config/ladder/SpaceSettlersConfig.xml
+END
+beacon-clientinit.xml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/spacesettlers/!svn/ver/13/config/ladder/beacon-clientinit.xml
+END
+passive-heuristic-clientinit.xml
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/spacesettlers/!svn/ver/13/config/ladder/passive-heuristic-clientinit.xml
+END

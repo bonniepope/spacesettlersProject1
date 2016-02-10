@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/spacesettlers/!svn/ver/22/src/spacesettlers/clients
+END
+aggressive_knowledge.xml
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/spacesettlers/!svn/ver/17/src/spacesettlers/clients/aggressive_knowledge.xml
+END
+HumanTeamClient.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/spacesettlers/!svn/ver/12/src/spacesettlers/clients/HumanTeamClient.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/spacesettlers/!svn/ver/7/src/spacesettlers/clients/package.html
+END
+DoNothingTeamClient.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/spacesettlers/!svn/ver/9/src/spacesettlers/clients/DoNothingTeamClient.java
+END
+ImmutableTeamInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/spacesettlers/!svn/ver/5/src/spacesettlers/clients/ImmutableTeamInfo.java
+END
+BeaconCollectorTeamClient.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/spacesettlers/!svn/ver/9/src/spacesettlers/clients/BeaconCollectorTeamClient.java
+END
+InfiniteLoopTeamClient.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/spacesettlers/!svn/ver/9/src/spacesettlers/clients/InfiniteLoopTeamClient.java
+END
+TeamClient.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/spacesettlers/!svn/ver/9/src/spacesettlers/clients/TeamClient.java
+END
+RandomTeamClient.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/spacesettlers/!svn/ver/9/src/spacesettlers/clients/RandomTeamClient.java
+END
+Team.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/spacesettlers/!svn/ver/16/src/spacesettlers/clients/Team.java
+END
+AggressiveHeuristicAsteroidCollectorTeamClient.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/spacesettlers/!svn/ver/9/src/spacesettlers/clients/AggressiveHeuristicAsteroidCollectorTeamClient.java
+END
+PacifistHeuristicAsteroidCollectorTeamClient.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/spacesettlers/!svn/ver/17/src/spacesettlers/clients/PacifistHeuristicAsteroidCollectorTeamClient.java
+END
+AggressiveHeuristicAsteroidCollectorSingletonTeamClient.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/spacesettlers/!svn/ver/22/src/spacesettlers/clients/AggressiveHeuristicAsteroidCollectorSingletonTeamClient.java
+END
+ExampleKnowledge.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/spacesettlers/!svn/ver/1/src/spacesettlers/clients/ExampleKnowledge.java
+END

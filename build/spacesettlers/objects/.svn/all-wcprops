@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/spacesettlers/!svn/ver/23/src/spacesettlers/objects
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/spacesettlers/!svn/ver/7/src/spacesettlers/objects/package.html
+END
+Ship.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/spacesettlers/!svn/ver/16/src/spacesettlers/objects/Ship.java
+END
+Beacon.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/spacesettlers/!svn/ver/9/src/spacesettlers/objects/Beacon.java
+END
+AbstractObject.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/spacesettlers/!svn/ver/11/src/spacesettlers/objects/AbstractObject.java
+END
+Asteroid.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/spacesettlers/!svn/ver/10/src/spacesettlers/objects/Asteroid.java
+END
+Base.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/spacesettlers/!svn/ver/9/src/spacesettlers/objects/Base.java
+END
+AbstractActionableObject.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/spacesettlers/!svn/ver/23/src/spacesettlers/objects/AbstractActionableObject.java
+END

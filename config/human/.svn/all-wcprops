@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/spacesettlers/!svn/ver/13/config/human
+END
+SpaceSettlersConfig.xml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/spacesettlers/!svn/ver/13/config/human/SpaceSettlersConfig.xml
+END
+beacon-clientinit.xml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/spacesettlers/!svn/ver/4/config/human/beacon-clientinit.xml
+END
+passive-heuristic-clientinit.xml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/spacesettlers/!svn/ver/6/config/human/passive-heuristic-clientinit.xml
+END
+human-clientinit.xml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/spacesettlers/!svn/ver/4/config/human/human-clientinit.xml
+END
+donothing-clientinit.xml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/spacesettlers/!svn/ver/4/config/human/donothing-clientinit.xml
+END
+aggressive-heuristic-clientinit.xml
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/spacesettlers/!svn/ver/5/config/human/aggressive-heuristic-clientinit.xml
+END
+random-clientinit.xml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/spacesettlers/!svn/ver/4/config/human/random-clientinit.xml
+END

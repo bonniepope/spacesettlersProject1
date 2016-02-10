@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/spacesettlers/!svn/ver/9/src/spacesettlers/graphics
+END
+ShipGraphics.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/spacesettlers/!svn/ver/5/src/spacesettlers/graphics/ShipGraphics.java
+END
+RectangleGraphics.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/spacesettlers/!svn/ver/1/src/spacesettlers/graphics/RectangleGraphics.java
+END
+MissileGraphics.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/spacesettlers/!svn/ver/5/src/spacesettlers/graphics/MissileGraphics.java
+END
+SpacewarGraphics.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/spacesettlers/!svn/ver/3/src/spacesettlers/graphics/SpacewarGraphics.java
+END
+TargetGraphics.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/spacesettlers/!svn/ver/1/src/spacesettlers/graphics/TargetGraphics.java
+END
+BeaconGraphics.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/spacesettlers/!svn/ver/3/src/spacesettlers/graphics/BeaconGraphics.java
+END
+LineGraphics.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/spacesettlers/!svn/ver/1/src/spacesettlers/graphics/LineGraphics.java
+END
+PolygonGraphics.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/spacesettlers/!svn/ver/1/src/spacesettlers/graphics/PolygonGraphics.java
+END
+StarGraphics.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/spacesettlers/!svn/ver/3/src/spacesettlers/graphics/StarGraphics.java
+END
+AsteroidGraphics.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/spacesettlers/!svn/ver/9/src/spacesettlers/graphics/AsteroidGraphics.java
+END
+BaseGraphics.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/spacesettlers/!svn/ver/5/src/spacesettlers/graphics/BaseGraphics.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/spacesettlers/!svn/ver/7/src/spacesettlers/graphics/package.html
+END
+CircleGraphics.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/spacesettlers/!svn/ver/3/src/spacesettlers/graphics/CircleGraphics.java
+END
+EMPGraphics.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/spacesettlers/!svn/ver/5/src/spacesettlers/graphics/EMPGraphics.java
+END

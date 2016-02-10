@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/spacesettlers/!svn/ver/16/config/heuristicCompetitive
+END
+SpaceSettlersConfig.xml
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/spacesettlers/!svn/ver/16/config/heuristicCompetitive/SpaceSettlersConfig.xml
+END
+beacon-clientinit.xml
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/spacesettlers/!svn/ver/14/config/heuristicCompetitive/beacon-clientinit.xml
+END
+passive-heuristic-clientinit.xml
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/spacesettlers/!svn/ver/14/config/heuristicCompetitive/passive-heuristic-clientinit.xml
+END
+human-clientinit.xml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/spacesettlers/!svn/ver/14/config/heuristicCompetitive/human-clientinit.xml
+END
+donothing-clientinit.xml
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/spacesettlers/!svn/ver/14/config/heuristicCompetitive/donothing-clientinit.xml
+END
+aggressive-heuristic-clientinit.xml
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/spacesettlers/!svn/ver/14/config/heuristicCompetitive/aggressive-heuristic-clientinit.xml
+END
+random-clientinit.xml
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/spacesettlers/!svn/ver/14/config/heuristicCompetitive/random-clientinit.xml
+END
+LadderConfig.xml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/spacesettlers/!svn/ver/16/config/heuristicCompetitive/LadderConfig.xml
+END
