@@ -14,6 +14,7 @@ import com.thoughtworks.xstream.XStreamException;
 
 import spacesettlers.actions.AbstractAction;
 import spacesettlers.actions.DoNothingAction;
+import spacesettlers.actions.MoveAction;
 import spacesettlers.actions.MoveToObjectAction;
 import spacesettlers.actions.PurchaseCosts;
 import spacesettlers.actions.PurchaseTypes;
@@ -32,16 +33,19 @@ import spacesettlers.simulator.Toroidal2DPhysics;
 import spacesettlers.utilities.Position;
 
 /**
- * Agent that prioritizes asteroids 
+ * Prioritizes collecting asteroids over collecting beacons
  * 
- * @author Bonnie and Kristen
+ * @author Collins and Pope (based heavily on PacifistHeuristicAsteroidCollector by Professor McGovern)
  */
-public class RandomTeamClient extends TeamClient {
+public class PriorityAsteroidCollector extends TeamClient {
 	HashMap <UUID, Ship> asteroidToShipMap;
 	HashMap <UUID, Boolean> aimingForBase;
+	
+	MyState state;
+	
 
 	/**
-	 * Assigns ships to asteroids and beacons, as described above
+	 * Assigns ships to specific actions
 	 */
 	public Map<UUID, AbstractAction> getMovementStart(Toroidal2DPhysics space,
 			Set<AbstractActionableObject> actionableObjects) {
@@ -53,7 +57,7 @@ public class RandomTeamClient extends TeamClient {
 				Ship ship = (Ship) actionable;
 
 				AbstractAction action;
-				action = getAsteroidCollectorAction(space, ship); 
+				action = getAsteroidCollectorAction(space, ship);
 				actions.put(ship.getId(), action);
 				
 			} else {
@@ -65,68 +69,72 @@ public class RandomTeamClient extends TeamClient {
 	}
 	
 	/**
-	 * Gets the action for the asteroid collecting ship
+	 * Gets the action for the asteroid prioritizing ship
 	 * @param space
 	 * @param ship
 	 * @return
 	 */
 	private AbstractAction getAsteroidCollectorAction(Toroidal2DPhysics space,
 			Ship ship) {
-		AbstractAction current = ship.getCurrentAction();
+		//AbstractAction current = ship.getCurrentAction();
 		Position currentPosition = ship.getPosition();
-
-		// TODO: make it so it prioritizes asteroids, then beacons 
-		// TODO: go back to base if near base, drop off resources. If not and not full, wait until x num of resources 
 		
-		// aim for a beacon if there isn't enough energy
-		if (ship.getEnergy() < 2000 ) {
+		//if the ship's resources are less than 750, 
+		//move toward high resource value free asteroids
+		if(ship.getResources().getTotal() < state.getGoalResources()){
+			aimingForBase.put(ship.getId(), false);
+			Asteroid asteroidFirstChoice = pickHighestValueFreeAsteroid(space, ship);
+			Asteroid asteroidSecondChoice = findNearestAsteroid(space, ship);
+			Beacon beacon = pickNearestBeacon(space, ship);
+			double beaconDistance = space.findShortestDistance(ship.getPosition(), beacon.getPosition());
+			double asteroid1Distance = space.findShortestDistance(ship.getPosition(), asteroidFirstChoice.getPosition());
+			double asteroid2Distance = space.findShortestDistance(ship.getPosition(), asteroidSecondChoice.getPosition());
+			AbstractAction newAction = null;
 
+			//if asteroid1 isn't null and if asteroid1 is closer than asteroid2, 
+			//move towards asteroid1
+			if ((asteroidFirstChoice != null) && (asteroid1Distance < asteroid2Distance)) {
+				asteroidToShipMap.put(asteroidFirstChoice.getId(), ship);
+				newAction = new MoveToObjectAction(space, currentPosition, asteroidFirstChoice);
+			}
+			//else if asteroid 2 isn't null
+			//move towards asteroid2
+			else{ 
+				asteroidToShipMap.put(asteroidSecondChoice.getId(), ship);
+				newAction = new MoveToObjectAction(space, currentPosition, asteroidSecondChoice);
+			}
+			/*else{
+				newAction = new MoveToObjectAction(space, currentPosition, beacon);
+			}*/
+			return newAction;	
+		}
+		// if the ship equal to or greater than the amount of goal resources, take it back to base
+		else if (ship.getResources().getTotal() >= state.getGoalResources()) {
+			Base base = findNearestBase(space, ship);
+			AbstractAction newAction = new MoveToObjectAction(space, currentPosition, base);
+			aimingForBase.put(ship.getId(), true);
+			return newAction;
+		}
+		// did we bounce off the base?
+		else if(ship.getResources().getTotal() == 0 && ship.getEnergy() > 2000 && aimingForBase.containsKey(ship.getId()) && aimingForBase.get(ship.getId())) {
+			//current = null;
+			aimingForBase.put(ship.getId(), false);
+		}
+		else{
 			Beacon beacon = pickNearestBeacon(space, ship);
 			AbstractAction newAction = null;
-			// if there is no beacon, then just skip a turn
+			// if there is no beacon, then go find an asteroid
 			if (beacon == null) {
-				newAction = new DoNothingAction();
+				Asteroid asteroid = pickHighestValueFreeAsteroid(space, ship);
+				newAction = new MoveToObjectAction(space, currentPosition, asteroid);
 			} else {
 				newAction = new MoveToObjectAction(space, currentPosition, beacon);
 			}
 			aimingForBase.put(ship.getId(), false);
 			return newAction;
 		}
-
-		// if the ship has enough resourcesAvailable, take it back to base
-		if (ship.getResources().getTotal() > 500) {
-			Base base = findNearestBase(space, ship);
-			AbstractAction newAction = new MoveToObjectAction(space, currentPosition, base);
-			aimingForBase.put(ship.getId(), true);
-			return newAction;
-		}
-
-		// did we bounce off the base?
-		if (ship.getResources().getTotal() == 0 && ship.getEnergy() > 2000 && aimingForBase.containsKey(ship.getId()) && aimingForBase.get(ship.getId())) {
-			current = null;
-			aimingForBase.put(ship.getId(), false);
-		}
-
-		// otherwise aim for the asteroid
-		if (current == null || current.isMovementFinished(space)) {
-			aimingForBase.put(ship.getId(), false);
-			Asteroid asteroid = pickBestAsteroid(space, ship);
-			//double distAsteroid = space.findShortestDistance(ship.getPosition(), asteroid.getPosition());
-
-			AbstractAction newAction = null;
-
-			if (asteroid != null) {
-				asteroidToShipMap.put(asteroid.getId(), ship);
-				newAction = new MoveToObjectAction(space, currentPosition, asteroid);
-			}
-			
-			return newAction;
-		} 
-		
 		return ship.getCurrentAction();
 	}
-
-
 	/**
 	 * Find the base for this team nearest to this ship
 	 * 
@@ -148,49 +156,6 @@ public class RandomTeamClient extends TeamClient {
 			}
 		}
 		return nearestBase;
-	}
-	
-	/**
-	 * Returns the best asteroid determined by closeness
-	 * 
-	 * @return
-	 */
-	private Asteroid pickBestAsteroid(Toroidal2DPhysics space, Ship ship) {
-		Set<Asteroid> asteroids = space.getAsteroids();
-		int bestMoney = Integer.MIN_VALUE;
-		Asteroid bestAsteroid = null;
-		ArrayList<Asteroid> closestAsteroids = new ArrayList<Asteroid>();
-		int count = 0;
-
-		for (Asteroid asteroid : asteroids) {
-			if (!asteroidToShipMap.containsKey(asteroid)) {
-				double dist = space.findShortestDistance(ship.getPosition(), asteroid.getPosition());
-				if (closestAsteroids.size() == 0){
-					closestAsteroids.add(asteroid);
-					
-				}
-				else {
-					for (int i = 0; i < closestAsteroids.size(); i++) {
-						if (space.findShortestDistance(ship.getPosition(),
-								closestAsteroids.get(i).getPosition()) > dist) { // through array and place in correct spot
-							closestAsteroids.add(i, asteroid);
-						}
-					} 
-				}
-			}
-		}
-		for (Asteroid asteroid : closestAsteroids) {
-			if (asteroid.isMineable() && asteroid.getResources().getTotal() > bestMoney) {
-				bestMoney = asteroid.getResources().getTotal();
-				bestAsteroid = asteroid;
-			}
-			count++;
-			if (count == 5){
-				break;
-			}
-		}
-		
-		return bestAsteroid;
 	}
 
 	/**
@@ -216,6 +181,32 @@ public class RandomTeamClient extends TeamClient {
 	}
 
 	/**
+	 * Find the nearest asteroid
+	 * 
+	 * @param space
+	 * @param ship
+	 * @return
+	 */
+	
+	private Asteroid findNearestAsteroid(Toroidal2DPhysics space, Ship ship){
+
+		double minDistance = Double.MAX_VALUE;
+		Asteroid nearestAsteroid = null;
+		
+		for(Asteroid asteroid : space.getAsteroids()){
+			double dist = space.findShortestDistance(ship.getPosition(), asteroid.getPosition());
+			if((dist < minDistance) && (asteroid != null) && (asteroid.isMineable())){
+				minDistance = dist;
+				nearestAsteroid = asteroid;
+			}
+			else{
+				nearestAsteroid = pickHighestValueFreeAsteroid(space, ship);
+			}
+		}
+		return nearestAsteroid;
+	}
+	
+	/**
 	 * Find the nearest beacon to this ship
 	 * @param space
 	 * @param ship
@@ -235,11 +226,8 @@ public class RandomTeamClient extends TeamClient {
 				closestBeacon = beacon;
 			}
 		}
-
 		return closestBeacon;
 	}
-
-
 
 	@Override
 	public void getMovementEnd(Toroidal2DPhysics space, Set<AbstractActionableObject> actionableObjects) {
@@ -252,21 +240,28 @@ public class RandomTeamClient extends TeamClient {
 				//System.out.println("Removing asteroid from map");
 			}
 		}
-
 		for (Asteroid asteroid : finishedAsteroids) {
 			asteroidToShipMap.remove(asteroid);
 		}
-
-
 	}
 	
-
 	/**
 	 * Demonstrates one way to read in knowledge from a file
 	 */
 	@Override
 	public void initialize(Toroidal2DPhysics space) {
+		asteroidToShipMap = new HashMap<UUID, Ship>();
+		aimingForBase = new HashMap<UUID, Boolean>();
 		
+		/*XStream xstream = new XStream();
+		xstream.alias("ExampleKnowledge", ExampleKnowledge.class);
+		try { 
+			myKnowledge = (ExampleKnowledge) xstream.fromXML(new File(knowledgeFile));
+		} catch (XStreamException e) {
+			// if you get an error, handle it other than a null pointer because
+			// the error will happen the first time you run
+			myKnowledge = new ExampleKnowledge();
+		} */
 	}
 
 	/**
@@ -276,7 +271,19 @@ public class RandomTeamClient extends TeamClient {
 	 */
 	@Override
 	public void shutDown(Toroidal2DPhysics space) {
-		
+		/*XStream xstream = new XStream();
+		xstream.alias("ExampleKnowledge", ExampleKnowledge.class);
+		try { 
+			// if you want to compress the file, change FileOuputStream to a GZIPOutputStream
+			xstream.toXML(myKnowledge, new FileOutputStream(new File(knowledgeFile)));
+		} catch (XStreamException e) {
+			// if you get an error, handle it somehow as it means your knowledge didn't save
+			// the error will happen the first time you run
+			myKnowledge = new ExampleKnowledge();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			myKnowledge = new ExampleKnowledge();
+		} */
 	}
 
 	@Override
@@ -295,8 +302,6 @@ public class RandomTeamClient extends TeamClient {
 			ResourcePile resourcesAvailable, 
 			PurchaseCosts purchaseCosts) {
 		
-		//TODO: prioritize either ships or bases. test to see
-
 		HashMap<UUID, PurchaseTypes> purchases = new HashMap<UUID, PurchaseTypes>();
 		double BASE_BUYING_DISTANCE = 200;
 		boolean bought_base = false;
@@ -317,7 +322,6 @@ public class RandomTeamClient extends TeamClient {
 							}
 						}
 					}
-
 					if (maxDistance > BASE_BUYING_DISTANCE) {
 						purchases.put(ship.getId(), PurchaseTypes.BASE);
 						bought_base = true;
@@ -327,28 +331,12 @@ public class RandomTeamClient extends TeamClient {
 				}
 			}		
 		} 
-		
-		// can I buy a ship?
-		if (purchaseCosts.canAfford(PurchaseTypes.SHIP, resourcesAvailable) && bought_base == false) {
-			for (AbstractActionableObject actionableObject : actionableObjects) {
-				if (actionableObject instanceof Base) {
-					Base base = (Base) actionableObject;
-					
-					purchases.put(base.getId(), PurchaseTypes.SHIP);
-					break;
-				}
-
-			}
-
-		}
-
-
 		return purchases;
 	}
 
 	/**
-	 * The pacifist asteroid collector doesn't use power ups 
-	 * @param space
+	 * The priority asteroid collector doesn't use powerups
+	 * @param space 
 	 * @param actionableObjects
 	 * @return
 	 */
@@ -356,10 +344,9 @@ public class RandomTeamClient extends TeamClient {
 	public Map<UUID, SpaceSettlersPowerupEnum> getPowerups(Toroidal2DPhysics space,
 			Set<AbstractActionableObject> actionableObjects) {
 		HashMap<UUID, SpaceSettlersPowerupEnum> powerUps = new HashMap<UUID, SpaceSettlersPowerupEnum>();
-
-		//TODO: what power ups to use if any?
 		
 		return powerUps;
 	}
 
 }
+
