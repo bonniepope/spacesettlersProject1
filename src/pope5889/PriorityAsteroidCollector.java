@@ -41,7 +41,7 @@ public class PriorityAsteroidCollector extends TeamClient {
 	HashMap <UUID, Ship> asteroidToShipMap;
 	HashMap <UUID, Boolean> aimingForBase;
 	
-	MyState state;
+	MyState state = new MyState();
 	
 
 	/**
@@ -253,15 +253,6 @@ public class PriorityAsteroidCollector extends TeamClient {
 		asteroidToShipMap = new HashMap<UUID, Ship>();
 		aimingForBase = new HashMap<UUID, Boolean>();
 		
-		/*XStream xstream = new XStream();
-		xstream.alias("ExampleKnowledge", ExampleKnowledge.class);
-		try { 
-			myKnowledge = (ExampleKnowledge) xstream.fromXML(new File(knowledgeFile));
-		} catch (XStreamException e) {
-			// if you get an error, handle it other than a null pointer because
-			// the error will happen the first time you run
-			myKnowledge = new ExampleKnowledge();
-		} */
 	}
 
 	/**
@@ -271,19 +262,7 @@ public class PriorityAsteroidCollector extends TeamClient {
 	 */
 	@Override
 	public void shutDown(Toroidal2DPhysics space) {
-		/*XStream xstream = new XStream();
-		xstream.alias("ExampleKnowledge", ExampleKnowledge.class);
-		try { 
-			// if you want to compress the file, change FileOuputStream to a GZIPOutputStream
-			xstream.toXML(myKnowledge, new FileOutputStream(new File(knowledgeFile)));
-		} catch (XStreamException e) {
-			// if you get an error, handle it somehow as it means your knowledge didn't save
-			// the error will happen the first time you run
-			myKnowledge = new ExampleKnowledge();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			myKnowledge = new ExampleKnowledge();
-		} */
+		
 	}
 
 	@Override
@@ -301,10 +280,24 @@ public class PriorityAsteroidCollector extends TeamClient {
 			Set<AbstractActionableObject> actionableObjects, 
 			ResourcePile resourcesAvailable, 
 			PurchaseCosts purchaseCosts) {
-		
+
 		HashMap<UUID, PurchaseTypes> purchases = new HashMap<UUID, PurchaseTypes>();
-		double BASE_BUYING_DISTANCE = 200;
+		double BASE_BUYING_DISTANCE = 500;
 		boolean bought_base = false;
+		
+		// can I buy a ship?
+		if (purchaseCosts.canAfford(PurchaseTypes.SHIP, resourcesAvailable)) {
+			for (AbstractActionableObject actionableObject : actionableObjects) {
+				if (actionableObject instanceof Base) {
+					Base base = (Base) actionableObject;
+					
+					purchases.put(base.getId(), PurchaseTypes.SHIP);
+					break;
+				}
+
+			}
+
+		}
 
 		if (purchaseCosts.canAfford(PurchaseTypes.BASE, resourcesAvailable)) {
 			for (AbstractActionableObject actionableObject : actionableObjects) {
@@ -322,6 +315,7 @@ public class PriorityAsteroidCollector extends TeamClient {
 							}
 						}
 					}
+
 					if (maxDistance > BASE_BUYING_DISTANCE) {
 						purchases.put(ship.getId(), PurchaseTypes.BASE);
 						bought_base = true;
@@ -331,8 +325,13 @@ public class PriorityAsteroidCollector extends TeamClient {
 				}
 			}		
 		} 
+		
+		
+
+
 		return purchases;
 	}
+
 
 	/**
 	 * The priority asteroid collector doesn't use powerups
